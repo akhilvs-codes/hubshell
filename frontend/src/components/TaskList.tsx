@@ -51,7 +51,7 @@ const TaskList = ({ loading, tasks, setTasks,setError }: { loading: boolean, tas
         }
     }
 
-    
+
 
     return (
         <>
@@ -71,7 +71,7 @@ const TaskList = ({ loading, tasks, setTasks,setError }: { loading: boolean, tas
                         {tasks.map(task => {
                             return (
 
-                                <div className=" flex gap-18 justify-start mt-3 align-baseline" key={task._id}>
+                                <div className="grid grid-cols-5 mt-2" key={task._id}>
                                     <p>{task.title}</p>
                                     <p>{task.description}</p>
                                     <p>{task.priority}</p>

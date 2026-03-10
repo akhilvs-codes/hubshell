@@ -41,8 +41,8 @@ const Tasks = () => {
   return (
     <div className="flex gap-10">
 
-      <TaskList loading={loading} tasks={tasks} setTasks={setTasks} />
-      <CreateTaskForm setTasks={setTasks}/>
+      <TaskList loading={loading} tasks={tasks} setTasks={setTasks} setError={setError} />
+      <CreateTaskForm setTasks={setTasks} />
 
       {error && <p className="text-red-500">{error}</p>}
 

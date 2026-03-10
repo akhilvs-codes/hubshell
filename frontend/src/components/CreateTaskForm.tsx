@@ -7,7 +7,7 @@ import { createTaskSchema } from '../schemas/taskSchemas'
 import { createTask } from '../services/taskServices'
 import type { Task } from '../types/types'
 
-const CreateTaskForm = ({setTasks}:{setTasks:React.Dispatch<React.SetStateAction<Task[]>>}) => {
+const CreateTaskForm = ({ setTasks }: { setTasks: React.Dispatch<React.SetStateAction<Task[]>> }) => {
 
     const [error, setError] = useState("")
     const [title, setTitle] = useState("")
@@ -16,7 +16,7 @@ const CreateTaskForm = ({setTasks}:{setTasks:React.Dispatch<React.SetStateAction
 
 
 
-    const onHandleSubmit = (e:React.FormEvent) => {
+    const onHandleSubmit = (e: React.FormEvent) => {
         console.log("handler call");
         e.preventDefault()
 
@@ -27,24 +27,25 @@ const CreateTaskForm = ({setTasks}:{setTasks:React.Dispatch<React.SetStateAction
             priority
         })
 
-    
-        
-       if (!res.success) {
-           console.log(res.error.issues[0].message)
-        setError(res.error.issues[0].message)
-        return
-    }
+
+
+        if (!res.success) {
+            console.log(res.error.issues[0])
+            let message = `${res.error.issues[0].message} ` + ` ${res.error.issues[0].code}`
+            setError(message)
+            return
+        }
 
 
         const createTaskRun = async () => {
 
             try {
 
-         const data= await createTask(res.data)
-         console.log("created data",data);
-         
+                const data = await createTask(res.data)
+                console.log("created data", data);
 
-                setTasks(prev=>[data,...prev])
+
+                setTasks(prev => [data, ...prev])
                 setTitle("")
                 setDescription("")
                 setPriority("low")
@@ -92,7 +93,7 @@ const CreateTaskForm = ({setTasks}:{setTasks:React.Dispatch<React.SetStateAction
                     <option value="medium">Medium</option>
                     <option value="high">High</option>
                 </select>
-            <button type='submit'>create task</button>
+                <button type='submit'>create task</button>
             </form>
 
 
