@@ -5,8 +5,9 @@
 import React, { useState } from 'react'
 import { createTaskSchema } from '../schemas/taskSchemas'
 import { createTask } from '../services/taskServices'
+import type { Task } from '../types/types'
 
-const CreateTaskForm = () => {
+const CreateTaskForm = ({setTasks}:{setTasks:React.Dispatch<React.SetStateAction<Task[]>>}) => {
 
     const [error, setError] = useState("")
     const [title, setTitle] = useState("")
@@ -39,11 +40,16 @@ const CreateTaskForm = () => {
 
             try {
 
-                await createTask(res.data)
+         const data= await createTask(res.data)
+         console.log("created data",data);
+         
+
+                setTasks(prev=>[data,...prev])
                 setTitle("")
                 setDescription("")
                 setPriority("low")
                 setError("")
+
             } catch (error) {
                 setError("Failed to create task")
             }
@@ -55,9 +61,9 @@ const CreateTaskForm = () => {
 
     }
     return (
-        <div>
+        <div className=''>
 
-            <form onSubmit={onHandleSubmit} className='flex flex-col gap-4'>
+            <form onSubmit={onHandleSubmit} className='flex flex-col gap-4 '>
 
                 <h2>create task</h2>
 
@@ -86,7 +92,7 @@ const CreateTaskForm = () => {
                     <option value="medium">Medium</option>
                     <option value="high">High</option>
                 </select>
-            <button type='submit'>crate task</button>
+            <button type='submit'>create task</button>
             </form>
 
 

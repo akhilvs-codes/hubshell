@@ -27,18 +27,23 @@ export const createTask = async (req: Request, res: Response) => {
 
 export const updateTaskStatus = async (req: Request, res: Response) => {
 
-
     try {
+        
+        
+        
         const { data, success, error } = updateStatusSchema.safeParse(req.body)
-        const taskId = req.params
-
+        const taskId = req.params.id
+        
         if (!success) {
             res.status(400).json(error)
         }
+        console.log("update task",taskId,data?.status);
+        
+        const task = await taskModel.findByIdAndUpdate(taskId , { status: data?.status }, { new: true })
 
-        const task = await taskModel.updateOne({ id: taskId }, { status: data?.status }, { new: true })
-
-        res.json(201).json({ message: "success", task })
+        console.log(task);
+        
+        res.status(201).json({ message: "success", task })
 
     } catch (error) {
 
