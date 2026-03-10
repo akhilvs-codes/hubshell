@@ -84,13 +84,7 @@ export const deleteTask = async (req: Request, res: Response, next: NextFunction
     console.log("delete");
 
     try {
-        const taskId = req.params.useImperativeHandle(
-          s,
-          () => {
-            second
-          },
-          [third],
-        )
+        const taskId = req.params.id
         await taskModel.findByIdAndDelete(taskId)
 
     } catch (error) {
