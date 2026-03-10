@@ -27,3 +27,14 @@ export const createTask = async (data:Task):Promise<Task> => {
         throw error
     }
 }
+
+export const deleteTask = async (id:string):Promise<Task> => {
+    try {
+        const res = await axiosApi.delete(`/tasks/${id}`)
+        return res.data.task
+        
+
+    } catch (error) {
+        throw error
+    }
+}

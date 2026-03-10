@@ -2,7 +2,7 @@
 import { Request, Response } from "express"
 import { createTaskSchema, updateStatusSchema } from "../validators/taskValidator.js"
 import taskModel from "../model/taskModel.js"
-import { RetryAgent } from "undici-types"
+
 
 export const createTask = async (req: Request, res: Response) => {
 
@@ -76,12 +76,15 @@ export const getAlltaks = async (req: Request, res: Response) => {
 
 
 export const deleteTask = async (req: Request, res: Response) => {
-
+    console.log("delete");
+    
     try {
-        const taskId = req.params
+        const taskId = req.params.id
         await taskModel.findByIdAndDelete(taskId)
 
     } catch (error) {
+        console.log(error,"error");
+        
         res.status(400).json({ error: "internal server error" })
 
     }
