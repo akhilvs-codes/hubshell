@@ -64,7 +64,7 @@ export const getAlltaks = async (req: Request, res: Response) => {
         if (status) {
             filter.status = String(status)
         }
-        const skip = Number(page-1)* Number(limit)
+        const skip = (Number(page)-1)* Number(limit)
 
         const tasks = await taskModel.find(filter).sort({ createdAt: -1 }).skip(skip).limit(Number(limit))
 

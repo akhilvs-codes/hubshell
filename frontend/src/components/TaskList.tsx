@@ -18,7 +18,7 @@ const TaskList = ({ loading, tasks, setTasks,setError }: { loading: boolean, tas
 
             }
             deleteRun()
-
+            setError("")
             setTasks((prev) => {
                 return prev.filter(task => task._id != id)
             })
@@ -59,14 +59,17 @@ const TaskList = ({ loading, tasks, setTasks,setError }: { loading: boolean, tas
                 {loading ? (
                     <p>{loading}</p>
                 ) :
-
+                
                     <div className="mt-18">
+                        
                         <div className="flex gap-4 font-bold text-2xl">
                             <p>title</p>
                             <p>description</p>
                             <p>priority</p>
                             <p>status</p>
                         </div>
+
+                    
 
                         {tasks.map(task => {
                             return (

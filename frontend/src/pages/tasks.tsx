@@ -19,6 +19,7 @@ const Tasks = () => {
       try {
         const res = await getAlltask()
         setTasks(res)
+        setError("")
         console.log(res);
 
       } catch (error) {
