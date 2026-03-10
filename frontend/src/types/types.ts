@@ -4,9 +4,9 @@
 
 
 export interface Task {
-    _id: string,
+    _id?: string,
     title: string,
-    description: string,
-    status: string,
+    description?: string,
+    status?: string,
     priority: string
 }

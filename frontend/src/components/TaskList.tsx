@@ -17,6 +17,8 @@ const TaskList = () => {
             try {
                 const res = await getAlltask()
                 setTasks(res)
+                console.log(res);
+                
             } catch (error) {
 
             } finally {

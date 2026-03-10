@@ -1,12 +1,16 @@
+import CreateTaskForm from "../components/CreateTaskForm"
+import TaskList from "../components/TaskList"
 
 
 
-const tasks = () => {
+const Tasks = () => {
   return (
+    <div>
 
-    
-    <div>tasks</div>
+      <CreateTaskForm />
+      <TaskList/>
+    </div>
   )
 }
 
-export default tasks
+export default Tasks
