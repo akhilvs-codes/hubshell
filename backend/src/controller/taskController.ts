@@ -57,7 +57,7 @@ export const getAlltaks = async (req: Request, res: Response) => {
         }
         const skip = Number(page) - 1 * Number(limit)
 
-        const tasks = await taskModel.find(filter).skip(skip).limit(Number(limit))
+        const tasks = await taskModel.find(filter).sort({createdAt:-1}).skip(skip).limit(Number(limit))
 
         res.status(200).json(tasks)
 
@@ -74,7 +74,7 @@ export const deleteTask = async (req: Request, res: Response) => {
     try {
         const taskId=req.params
         await taskModel.findByIdAndDelete(taskId)
-        
+
     } catch (error) {
         res.status(400).json({ error: "internal server error" })
 
